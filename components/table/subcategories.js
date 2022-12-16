@@ -25,6 +25,12 @@ const SubCategories = () => {
         )
     },[])
 
+    function setSession(id, name){
+        sessionStorage.setItem("ProductSubcategoryKey", id);
+        sessionStorage.setItem("ProductSubcategory", name);
+        location.reload();
+    }
+
     if (error) {
         return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -44,9 +50,9 @@ const SubCategories = () => {
                         {
                             data.map((val, i, index) => {
                                 return (
-                                    <tr>
+                                    <tr key={val.id}>
                                         <th scope="row">{val.id}</th>
-                                        <td><button className='btn-access-data'>{val.SubcategoryName}</button></td>
+                                        <td><button className='btn-access-data' onClick={(e)=> setSession(val.id, val.SubcategoryName)}>{val.SubcategoryName}</button></td>
                                         <td>{val.CategoryName}</td>
                                     </tr>
                                 );
