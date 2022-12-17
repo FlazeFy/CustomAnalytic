@@ -1,11 +1,9 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
 import SubCategories from '../components/table/subcategories'
 import SubCategoriesProducts from '../components/item/products'
-
-const inter = Inter({ subsets: ['latin'] })
+import MostExpensive from '../components/donutChart/mostExpensive'
 
 export default function Home() {
   return (
@@ -27,6 +25,17 @@ export default function Home() {
             <div className={styles.container} style={{width:"100%", height:"90vh"}}>
               <SubCategoriesProducts/>
             </div>
+          </div>
+        </div>
+        <div className='row'>
+          <div className='col-lg-6 col-md-6 col-sm-12'>
+            <h5 className='text-white mt-3 ms-1'>Most Expensive Product</h5>
+            <div className={styles.container} style={{width:"100%", height:"40vh"}}>
+              <MostExpensive/>
+            </div>
+          </div>
+          <div className='col-lg-6 col-md-6 col-sm-12'>
+
           </div>
         </div>
       </main>

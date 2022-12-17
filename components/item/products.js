@@ -37,7 +37,7 @@ const SubCategoriesProducts = () => {
                     data.map((val, i, index) => {
                         return (
                             <div className='product-box' key={val.id}>
-                                <h6 className='product-info side-right'>Profit : <span className='value'>${val.ProductProfit}</span></h6>
+                                <h6 className='product-info side-right'>Profit : <span className='value text-success'>${val.ProductProfit}</span></h6>
                                 <h6 className='product-info'>SKU : <span className='value'>{val.ProductSKU}</span></h6>
                                 <div className='row'>
                                     <div className='col-lg-5 col-md-5 col-sm-12'>
