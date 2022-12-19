@@ -34,7 +34,10 @@ export default function MostSalesByCountry() {
             function getSeries(val){
                 let catSeries = [];
                 val.forEach(e => { 
-                    catSeries.push(e.total);
+                    const example = e.total;
+
+                    const result = example ? example.toString() : '';
+                    catSeries.push(parseInt(result));
                 });
                 return catSeries;
             }

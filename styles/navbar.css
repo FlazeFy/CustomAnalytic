@@ -1,0 +1,34 @@
+.navbar.navbar-expand-lg.w-100{
+    background: #111111 !important;
+    position: fixed;
+    z-index: 999;
+    max-width: 1100px; /*Check this*/
+    border-bottom: 1px solid #292735;
+}
+.navbar-brand{
+    color:#8e57f7;
+    font-weight: bold;
+    font-size: 22px !important;
+    font-style: italic;
+    list-style-type: none !important;  
+}
+.nav-link{
+    color:white !important;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.navbar-nav li{
+    transition: 0.5s;
+    border:2.5px solid transparent;
+}
+.navbar-nav li:hover, .nav-item.active{
+    border-bottom: 2.5px solid #8e57f7;
+    color:#8e57f7 !important;
+}
+.navbar-nav li:hover a{
+    color:#8e57f7 !important;
+}
+a{
+    text-decoration: none !important;
+}

@@ -1,5 +1,7 @@
 import '../styles/globals.css'
 import 'bootstrap/dist/css/bootstrap.css'
+import '../styles/navbar.css'
+
 import { useEffect } from "react";
 
 function MyApp({ Component, pageProps }) {

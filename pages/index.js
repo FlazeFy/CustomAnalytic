@@ -1,10 +1,7 @@
 import Head from 'next/head'
 import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
-import SubCategories from '../components/table/subcategories'
-import SubCategoriesProducts from '../components/item/products'
-import MostSalesByCountry from '../components/donutChart/mostSalesByCountry'
-import MostExpensive from '../components/donutChart/mostExpensive'
+import Navbar from '../components/navbar/navbar'
 
 export default function Home() {
   return (
@@ -16,32 +13,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <div className='row'>
-          <div className='col-lg-5 col-md-6 col-sm-12'>
-            <div className={styles.container} style={{width:"100%", height:"90vh"}}>
-              <SubCategories/>
-            </div>
-          </div>
-          <div className='col-lg-7 col-md-6 col-sm-12'>
-            <div className={styles.container} style={{width:"100%", height:"90vh"}}>
-              <SubCategoriesProducts/>
-            </div>
-          </div>
-        </div>
-        <div className='row'>
-          <div className='col-lg-6 col-md-6 col-sm-12'>
-            <h5 className='text-white mt-3 ms-1'>Most Expensive Product</h5>
-            <div className={styles.container} style={{width:"100%", height:"40vh"}}>
-              <MostExpensive/>
-            </div>
-          </div>
-          <div className='col-lg-6 col-md-6 col-sm-12'>
-            <h5 className='text-white mt-3 ms-1'>Most Sales Product By Country</h5>
-            <div className={styles.container} style={{width:"100%", height:"40vh"}}>
-              <MostSalesByCountry/>
-            </div>
-          </div>
-        </div>
+        <Navbar active={"dashboard"}/>
       </main>
     </>
   )
