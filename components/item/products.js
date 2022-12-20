@@ -1,5 +1,12 @@
 import React from 'react'
 import { useState, useEffect } from "react"
+import LastProductSales from "./lastTransaction"
+
+//Font awesome icon
+import { library } from "@fortawesome/fontawesome-svg-core"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faClose} from "@fortawesome/free-solid-svg-icons"
+import { } from "@fortawesome/free-regular-svg-icons"
 
 const SubCategoriesProducts = () => {
     //Initial variable
@@ -63,6 +70,7 @@ const SubCategoriesProducts = () => {
                                     </div>
                                 </div><hr></hr>
                                 <h6 className='product-info product-name' style={{fontStyle:"italic"}}><span className='value' style={{fontSize:"18px", fontStyle:"normal"}}>{val.ProductName}</span> {val.ModelName}</h6>
+                                <LastProductSales props={val}/>
                             </div>
                         );
                     })

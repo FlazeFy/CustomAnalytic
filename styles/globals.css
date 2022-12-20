@@ -41,6 +41,10 @@ table td{
   overflow-y: auto;
 }
 
+.modal-body{
+  background: #212121;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
@@ -97,6 +101,16 @@ table td{
   -webkit-line-clamp: 3;
   line-clamp: 3;
   -webkit-box-orient: vertical;
+}
+
+.product-info.product-sales{
+  bottom:10px !important;
+  right: 6px !important;
+  position: absolute;
+  background: transparent;
+  color:#245ad0;
+  border:none;
+  text-decoration: underline;
 }
 
 @media (prefers-color-scheme: dark) {
