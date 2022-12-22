@@ -16,7 +16,7 @@ const SubCategories = () => {
             .then(
             (result) => {
                 setIsLoaded(true);
-                setItems(result);
+                setItems(result.data);
             },
             (error) => {
                 setIsLoaded(true);
