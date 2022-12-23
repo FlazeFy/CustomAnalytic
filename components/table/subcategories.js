@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from "react"
 
-const SubCategories = () => {
+const SubCategories = ({item}) => {
     //Initial variable
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -11,7 +11,7 @@ const SubCategories = () => {
     const data = Object.values(items);
 
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/api/subcategory/")
+        fetch("https://customanalytic.leonardhors.site/api/subcategory")
         .then(res => res.json())
             .then(
             (result) => {
@@ -48,7 +48,7 @@ const SubCategories = () => {
                     </thead>
                     <tbody>
                         {
-                            data.map((val, i, index) => {
+                            items.map((val, i, index) => {
                                 return (
                                     <tr key={val.id}>
                                         <th scope="row">{val.id}</th>

@@ -17,7 +17,7 @@ const LastProductSales = ({id}) => {
     const data = Object.values(items);
 
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/api/sales/products/"+ id)
+        fetch("https://customanalytic.leonardhors.site/api/sales/products/"+ id)
         .then(res => res.json())
             .then(
             (result) => {

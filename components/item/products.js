@@ -18,7 +18,7 @@ const SubCategoriesProducts = () => {
     const data = Object.values(items);
 
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/api/subcategory/"+sessionStorage.getItem("ProductSubcategoryKey")+"/products")
+        fetch("https://customanalytic.leonardhors.site/api/subcategory/"+sessionStorage.getItem("ProductSubcategoryKey")+"/products")
         .then(res => res.json())
             .then(
             (result) => {

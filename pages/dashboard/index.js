@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import { Inter } from '@next/font/google'
 import styles from '../../styles/Home.module.css'
 import SubCategories from '../../components/table/subcategories'
 import SubCategoriesProducts from '../../components/item/products'
