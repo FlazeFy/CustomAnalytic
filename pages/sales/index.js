@@ -2,7 +2,7 @@ import Head from 'next/head'
 import styles from '../../styles/Home.module.css'
 import Navbar from '../../components/navbar/navbar'
 import AllSalesByMonth from '../../components/columnChart/allSalesByMonth'
-// import MostExpensive from '../components/donutChart/mostExpensive'
+import SalesProductMonthlyCategory from '../../components/lineChart/salesProductMonthlyCategory'
 
 export default function Sales() {
   return (
@@ -20,6 +20,16 @@ export default function Sales() {
               <div className='col-lg-8 col-md-9 col-sm-12'>
                 <div className={styles.container} style={{width:"100%", height:"50vh"}}>
                   <AllSalesByMonth/>
+                </div>
+              </div>
+              <div className='col-lg-4 col-md-3 col-sm-12'>
+                  
+              </div>
+            </div>
+            <div className='row mt-2'>
+              <div className='col-lg-8 col-md-9 col-sm-12'>
+                <div className={styles.container} style={{width:"100%", height:"60vh"}}>
+                  <SalesProductMonthlyCategory/>
                 </div>
               </div>
               <div className='col-lg-4 col-md-3 col-sm-12'>
