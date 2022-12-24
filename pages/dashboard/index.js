@@ -29,8 +29,8 @@ export default function Home() {
                             <SubCategoriesProducts/>
                         </div>
                     </div>
-                    </div>
-                    <div className='row'>
+                </div>
+                <div className='row'>
                     <div className='col-lg-6 col-md-6 col-sm-12'>
                         <h5 className='text-white mt-3 ms-1'>Most Expensive Product</h5>
                         <div className={styles.container} style={{width:"100%", height:"40vh"}}>

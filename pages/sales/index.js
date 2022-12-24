@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import styles from '../../styles/Home.module.css'
 import Navbar from '../../components/navbar/navbar'
+import AllSalesByMonth from '../../components/columnChart/allSalesByMonth'
 // import MostExpensive from '../components/donutChart/mostExpensive'
 
 export default function Sales() {
@@ -13,10 +14,19 @@ export default function Sales() {
             <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className={styles.main}>
-            <Navbar active={"sales"}/>
-            <div className='pt-3'>
-                
+          <Navbar active={"sales"}/>
+          <div className='pt-4'>
+            <div className='row mt-5'>
+              <div className='col-lg-8 col-md-9 col-sm-12'>
+                <div className={styles.container} style={{width:"100%", height:"50vh"}}>
+                  <AllSalesByMonth/>
+                </div>
+              </div>
+              <div className='col-lg-4 col-md-3 col-sm-12'>
+                  
+              </div>
             </div>
+          </div>
         </main>
     </>
   )
