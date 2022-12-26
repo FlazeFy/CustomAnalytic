@@ -4,6 +4,7 @@ import Navbar from '../../components/navbar/navbar'
 import AllSalesByMonth from '../../components/columnChart/allSalesByMonth'
 import SalesProductMonthlyCategory from '../../components/lineChart/salesProductMonthlyCategory'
 import SubCategorySales from '../../components/heatmap/subCategorySales'
+import LastSales from '../../components/table/lastSales'
 
 export default function Sales() {
   return (
@@ -17,27 +18,24 @@ export default function Sales() {
         <main className={styles.main}>
           <Navbar active={"sales"}/>
           <div className='pt-4'>
-            <div className='mt-4'>
-              <SubCategorySales/>
+            <div className='mt-5'>
+              <div className={styles.container} style={{width:"100%", height:"90vh"}}>
+                <SubCategorySales/>
+              </div>
             </div>
             <div className='row mt-5'>
-              <div className='col-lg-8 col-md-9 col-sm-12'>
+              <div className='col-lg-7 col-md-7 col-sm-12'>
                 <div className={styles.container} style={{width:"100%", height:"50vh"}}>
                   <AllSalesByMonth/>
                 </div>
-              </div>
-              <div className='col-lg-4 col-md-3 col-sm-12'>
-                  
-              </div>
-            </div>
-            <div className='row mt-2'>
-              <div className='col-lg-8 col-md-9 col-sm-12'>
                 <div className={styles.container} style={{width:"100%", height:"60vh"}}>
                   <SalesProductMonthlyCategory/>
                 </div>
               </div>
-              <div className='col-lg-4 col-md-3 col-sm-12'>
-                  
+              <div className='col-lg-5 col-md-5 col-sm-12'>
+                <div className={styles.container} style={{width:"100%"}}>
+                  <LastSales/>
+                </div>
               </div>
             </div>
           </div>

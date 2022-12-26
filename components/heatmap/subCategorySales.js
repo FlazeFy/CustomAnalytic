@@ -10,6 +10,7 @@ export default function SubCategorySales() {
     const [isLoaded, setIsLoaded] = useState(false);
     const [items, setItems] = useState([]);
     var chart = [];
+    var valueStore = 0;
 
     //Converter
     const data = Object.values(items);
@@ -29,104 +30,54 @@ export default function SubCategorySales() {
         )
     },[])
 
-    function getSeries(val, mon){
+    function getSeries(val){
         let catSeries = [];
         val.forEach(e => {
-            if(mon == 1){
-                catSeries.push(parseInt(e.Jan));
-            } else if(mon == 2){
-                catSeries.push(parseInt(e.Feb));
-            } else if(mon == 3){
-                catSeries.push(parseInt(e.Mar));
-            } else if(mon == 4){
-                catSeries.push(parseInt(e.Apr));
-            } else if(mon == 5){
-                catSeries.push(parseInt(e.May));
-            } else if(mon == 6){
-                catSeries.push(parseInt(e.Jun));
-            } else if(mon == 7){
-                catSeries.push(parseInt(e.Jul));
-            } else if(mon == 8){
-                catSeries.push(parseInt(e.Aug));
-            } else if(mon == 9){
-                catSeries.push(parseInt(e.Sep));
-            } else if(mon == 10){
-                catSeries.push(parseInt(e.Oct));
-            } else if(mon == 11){
-                catSeries.push(parseInt(e.Nov));
-            } else if(mon == 12){
-                catSeries.push(parseInt(e.Dec));
-            }
+            catSeries.push({
+                name: e.SubcategoryName,
+                data: [e.Jan, e.Feb, e.Mar, e.Apr, e.May, e.Jun, e.Jul, e.Aug, e.Sep, e.Oct, e.Nov, e.Dec]
+            });
         });
+
         return catSeries;
     }
 
-    // function getCategory(val){
-    //     let catData = [];
-    //     val.forEach(e => { 
-    //         catData.push(e.ProductName);
-    //     });
-    //     return catData;
-    // }
-
     chart = {
-        series: [
-            {
-                name: 'Jan',
-                data: getSeries(data, 1)
-            },
-            {
-                name: 'Feb',
-                data: getSeries(data, 2)
-            },
-            {
-                name: 'Mar',
-                data: getSeries(data, 3)
-            },
-            {
-                name: 'Apr',
-                data: getSeries(data, 4)
-            },
-            {
-                name: 'May',
-                data: getSeries(data, 5)
-            },
-            {
-                name: 'Jun',
-                data: getSeries(data, 6)
-            },
-            {
-                name: 'Jul',
-                data: getSeries(data, 7)
-            },
-            {
-                name: 'Aug',
-                data: getSeries(data, 8)
-            },
-            {
-                name: 'Sep',
-                data: getSeries(data, 9)
-            },
-            {
-                name: 'Oct',
-                data: getSeries(data, 10)
-            },
-            {
-                name: 'Nov',
-                data: getSeries(data, 11)
-            },
-            {
-                name: 'Dec',
-                data: getSeries(data, 12)
-            }
-        ],
+        series: getSeries(data),
         options: {
             dataLabels: {
                 enabled: true
             },
             plotOptions: {
-                donut: {
-                    size: 200
+                heatmap: {
+                    colorScale: {
+                    ranges: [
+                        {
+                            from: -1,
+                            to:0,
+                            color: '#c9affa',
+                            name: 'Empty',
+                        },
+                        {
+                            from: 1,
+                            to: 60,
+                            color: '#bc9afc',
+                            name: 'Low',
+                        },
+                        {
+                            from: 61,
+                            to: 150,
+                            color: "#a87aff",
+                            name: 'Medium',
+                        },
+                        {
+                            from: 151,
+                            to:500,
+                            color: '#8f54ff',
+                            name: 'High',
+                        }
+                    ]
+                    }
                 }
             }
         }
@@ -139,7 +90,7 @@ export default function SubCategorySales() {
     } else {
         return (
             <div className='custom-tbody' style={{padding:"6px"}}>
-                <h6 className='text-white'>Selected Category : {sessionStorage.getItem("ProductSubcategory")}</h6>
+                <h6 className='text-white'>Subcategory Monthly Sales</h6>
                 <div className="BalanceChart me-4">
                     <Chart
                         options={chart.options}
