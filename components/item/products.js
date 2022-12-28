@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from "react"
-import LastProductSales from "./lastTransaction"
+import Image from 'next/image'
 
 //Font awesome icon
 import { library } from "@fortawesome/fontawesome-svg-core"
@@ -35,7 +35,19 @@ const SubCategoriesProducts = () => {
     if (error) {
         return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-        return <div>Loading...</div>;
+        return (
+            <div>
+                <Image
+                    src="/loading.gif"
+                    alt="Vercel Logo"
+                    className='loading-logo'
+                    width={100}
+                    height={100}
+                    priority
+                />
+                <h5 className='text-center text-white mt-2 fst-italic'>Loading...</h5>
+            </div>
+        );
     } else {
         return (
             <div className='custom-tbody' style={{padding:"6px"}}>

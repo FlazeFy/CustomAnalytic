@@ -1,8 +1,14 @@
 import React from 'react'
 import { useState, useEffect } from "react"
+import Image from 'next/image'
 
 import dynamic from 'next/dynamic';
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
+
+//Font awesome classicon
+import { library } from "@fortawesome/fontawesome-svg-core"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons"
 
 export default function MostSalesByCountry() {
     //Initial variable
@@ -15,10 +21,15 @@ export default function MostSalesByCountry() {
     const data = Object.values(items);
 
     useEffect(() => {
-        fetch("https://customanalytic.leonardhors.site/api/subcategory/"+sessionStorage.getItem("ProductSubcategoryKey")+"/products/sales/country")
+        fetch("https://customanalytic.leonardhors.site/api/subcategory/"+sessionStorage.getItem("ProductSubcategoryKey")+"/products/sales/country/"+sessionStorage.getItem("ChartLimit_MostSalesCountry"))
         .then(res => res.json())
             .then(
             (result) => {
+                //Default config
+                if(sessionStorage.getItem("ChartLimit_MostSalesCountry") == null){
+                    sessionStorage.setItem("ChartLimit_MostSalesCountry", "10");
+                }
+
                 setIsLoaded(true);
                 setItems(result.data);
             },
@@ -83,14 +94,44 @@ export default function MostSalesByCountry() {
         }
     }
 
+    //Chart filter and config
+    function setLimit(limit){
+        sessionStorage.setItem("ChartLimit_MostSalesCountry", limit);
+        location.reload();
+    }
+
     if (error) {
         return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-        return <div>Loading...</div>;
+        return (
+            <div>
+                <Image
+                    src="/loading.gif"
+                    alt="Vercel Logo"
+                    className='loading-logo'
+                    width={100}
+                    height={100}
+                    priority
+                />
+                <h5 className='text-center text-white mt-2 fst-italic'>Loading...</h5>
+            </div>
+        );
     } else {
         return (
             <div className='custom-tbody' style={{padding:"6px"}}>
                 <h6 className='text-white'>Selected Category : {sessionStorage.getItem("ProductSubcategory")}</h6>
+                <div className="dropdown">
+                    <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <FontAwesomeIcon icon={faEllipsisVertical}/></button>
+                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li>
+                            <a className="dropdown-item">
+                                <label className='input-number-label'>Chart Limit</label>
+                                <input type="number" className='form-control' min="2" max="10" defaultValue={sessionStorage.getItem("ChartLimit_MostSalesCountry")} onBlur={(e)=> setLimit(e.target.value)}></input>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
                 <div className="BalanceChart me-4">
                     {getChart(data.length)}
                 </div>

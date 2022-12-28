@@ -121,7 +121,12 @@ export default function MostSize() {
                                 }
                             })
                         }
-                        <li><a className="dropdown-item"><input type="number" className='form-control' min="2" defaultValue={sessionStorage.getItem("ChartLimit_MostSize")} onBlur={(e)=> setLimit(e.target.value)}></input></a></li>
+                        <li>
+                            <a className="dropdown-item">
+                                <label className='input-number-label'>Chart Limit</label>
+                                <input type="number" className='form-control' min="2" max="10" defaultValue={sessionStorage.getItem("ChartLimit_MostSize")} onBlur={(e)=> setLimit(e.target.value)}></input>
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <div className="BalanceChart me-4">

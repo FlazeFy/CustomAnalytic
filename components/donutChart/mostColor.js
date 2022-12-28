@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from "react"
+import Image from 'next/image'
 
 import dynamic from 'next/dynamic';
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
@@ -76,7 +77,19 @@ export default function MostColor() {
     if (error) {
         return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-        return <div>Loading...</div>;
+        return (
+            <div>
+                <Image
+                    src="/loading.gif"
+                    alt="Vercel Logo"
+                    className='loading-logo'
+                    width={100}
+                    height={100}
+                    priority
+                />
+                <h5 className='text-center text-white mt-2 fst-italic'>Loading...</h5>
+            </div>
+        );
     } else {
         return (
             <div className='custom-tbody' style={{padding:"6px"}}>
@@ -85,7 +98,12 @@ export default function MostColor() {
                     <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                         <FontAwesomeIcon icon={faEllipsisVertical}/></button>
                     <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a className="dropdown-item"><input type="number" className='form-control' min="2" defaultValue={sessionStorage.getItem("ChartLimit_MostColor")} onBlur={(e)=> setLimit(e.target.value)}></input></a></li>
+                        <li>
+                            <a className="dropdown-item">
+                                <label className='input-number-label'>Chart Limit</label>
+                                <input type="number" className='form-control' min="2" max="10" defaultValue={sessionStorage.getItem("ChartLimit_MostColor")} onBlur={(e)=> setLimit(e.target.value)}></input>
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <div className="BalanceChart me-4">
