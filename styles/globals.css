@@ -32,6 +32,11 @@ table th{
 table td{
   color: #808080;
 }
+.config-holder{
+  position: absolute;
+  left: -30px;
+  top: 10px;
+}
 
 .btn-access-data{
   width: 100%;
@@ -44,6 +49,14 @@ table td{
 }
 .btn-access-data:hover{
   background: #245ad0 !important;
+}
+.btn-config-table{
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  border-radius: 100%;
+  border: none;
+  background: #245ad0;
 }
 
 .custom-tbody{

@@ -5,6 +5,7 @@ import SubCategoriesProducts from '../../components/item/products'
 import MostSalesByCountry from '../../components/donutChart/mostSalesByCountry'
 import Navbar from '../../components/navbar/navbar'
 import MostExpensive from '../../components/donutChart/mostExpensive'
+import ConfigTableSubcategories from '../../components/configTable/subcategories'
 
 export default function Home() {
   return (
@@ -19,7 +20,9 @@ export default function Home() {
             <Navbar active={"dashboard"}/>
             <div className='pt-3'>
                 <div className='row pt-5'>
-                    <div className='col-lg-5 col-md-6 col-sm-12'>
+                    <div className='col-lg-5 col-md-6 col-sm-12 position-relative'>
+                        {/* Table config & setting */}
+                        <ConfigTableSubcategories/>
                         <div className={styles.container} style={{width:"100%", height:"90vh"}}>
                             <SubCategories/>
                         </div>

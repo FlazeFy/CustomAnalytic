@@ -2,6 +2,11 @@ import React from 'react'
 import Image from 'next/image'
 import { useState, useEffect } from "react"
 
+//Font awesome classicon
+import { library } from "@fortawesome/fontawesome-svg-core"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons"
+
 const SubCategories = ({item}) => {
     //Initial variable
     const [error, setError] = useState(null);
@@ -12,10 +17,15 @@ const SubCategories = ({item}) => {
     const data = Object.values(items);
 
     useEffect(() => {
-        fetch("https://customanalytic.leonardhors.site/api/subcategory")
+        fetch("https://customanalytic.leonardhors.site/api/subcategory/"+sessionStorage.getItem("TableSorting_Subcategory"))
         .then(res => res.json())
             .then(
             (result) => {
+                //Default config
+                if(sessionStorage.getItem("TableSorting_Subcategory") == null){
+                    sessionStorage.setItem("TableSorting_Subcategory", "ASC");
+                }
+
                 setIsLoaded(true);
                 setItems(result.data);
             },
@@ -30,6 +40,14 @@ const SubCategories = ({item}) => {
         sessionStorage.setItem("ProductSubcategoryKey", id);
         sessionStorage.setItem("ProductSubcategory", name);
         location.reload();
+    }
+
+    function getSortingIcon(sort){
+        if(sort == "ASC"){
+            return faArrowUp;
+        } else {
+            return faArrowDown;
+        }
     }
 
     if (error) {
@@ -54,7 +72,7 @@ const SubCategories = ({item}) => {
                 <table className="table">
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
+                            <th scope="col">ID <FontAwesomeIcon icon={getSortingIcon(sessionStorage.getItem("TableSorting_Subcategory"))} style={{fontSize:"14px !important"}}/></th>
                             <th scope="col">Product SubCategory</th>
                             <th scope="col">Product Category</th>
                         </tr>
