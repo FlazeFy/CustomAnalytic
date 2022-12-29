@@ -3,6 +3,7 @@ import styles from '../../styles/Home.module.css'
 import Navbar from '../../components/navbar/navbar'
 import MostColor from '../../components/donutChart/mostColor'
 import MostSize from '../../components/donutChart/mostSize'
+import MostStyle from '../../components/donutChart/mostStyle'
 
 export default function Products() {
   return (
@@ -25,6 +26,11 @@ export default function Products() {
                 <div className='col-lg-6 col-md-6 col-sm-12'>
                   <div className={styles.container} style={{width:"100%", height:"50vh"}}>
                     <MostSize/>
+                  </div>
+                </div>
+                <div className='col-lg-6 col-md-6 col-sm-12'>
+                  <div className={styles.container} style={{width:"100%", height:"50vh"}}>
+                    <MostStyle/>
                   </div>
                 </div>
               </div>

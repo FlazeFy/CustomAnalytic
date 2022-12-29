@@ -10,7 +10,7 @@ import { library } from "@fortawesome/fontawesome-svg-core"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faEllipsisVertical } from "@fortawesome/free-solid-svg-icons"
 
-export default function MostSize() {
+export default function MostStyle() {
     //Initial variable
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -22,14 +22,13 @@ export default function MostSize() {
     const data = Object.values(items);
 
     useEffect(() => {
-        fetch("https://customanalytic.leonardhors.site/api/product/mostsize/"+sessionStorage.getItem("ChartLimit_MostSize")+"/"+sessionStorage.getItem("ChartType_MostSize"))
+        fetch("https://customanalytic.leonardhors.site/api/product/style/"+sessionStorage.getItem("ChartType_MostStyle"))
         .then(res => res.json())
             .then(
             (result) => {
                 //Default config
-                if(sessionStorage.getItem("ChartLimit_MostSize") == null || sessionStorage.getItem("ChartType_MostSize") == null){
-                    sessionStorage.setItem("ChartLimit_MostSize", "10");
-                    sessionStorage.setItem("ChartType_MostSize", "Bikes");
+                if(sessionStorage.getItem("ChartType_MostStyle") == null){
+                    sessionStorage.setItem("ChartType_MostStyle", "Bikes");
                 }
 
                 setIsLoaded(true);
@@ -68,7 +67,7 @@ export default function MostSize() {
     function getCategory(val){
         let catData = [];
         val.forEach(e => { 
-            catData.push(e.ProductSize);
+            catData.push(e.ProductStyle);
         });
         return catData;
     }
@@ -86,13 +85,8 @@ export default function MostSize() {
     };
 
     //Chart filter and config
-    function setLimit(limit){
-        sessionStorage.setItem("ChartLimit_MostSize", limit);
-        location.reload();
-    }
-
     function setCategory(type){
-        sessionStorage.setItem("ChartType_MostSize", type);
+        sessionStorage.setItem("ChartType_MostStyle", type);
         location.reload();
     }
 
@@ -115,7 +109,7 @@ export default function MostSize() {
     } else {
         return (
             <div className='custom-tbody' style={{padding:"6px"}}>
-                <h6 className='text-white'>Most Produced Size</h6>
+                <h6 className='text-white'>Most Produced Style</h6>
                 <div className="dropdown">
                     <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                         <FontAwesomeIcon icon={faEllipsisVertical}/></button>
@@ -123,7 +117,7 @@ export default function MostSize() {
                         {
                             //Category type filter
                             items2.map((val, i, index) => {
-                                if(val.CategoryName == sessionStorage.getItem("ChartType_MostSize")){
+                                if(val.CategoryName == sessionStorage.getItem("ChartType_MostStyle")){
                                     return (
                                         <li key={i}><a className="dropdown-item"><FontAwesomeIcon icon={faCheck} onClick={(e)=> setCategory(val.CategoryName)}/> {val.CategoryName}</a></li>
                                     );
@@ -134,12 +128,6 @@ export default function MostSize() {
                                 }
                             })
                         }
-                        <li>
-                            <a className="dropdown-item">
-                                <label className='input-number-label'>Chart Limit</label>
-                                <input type="number" className='form-control' min="2" max="10" defaultValue={sessionStorage.getItem("ChartLimit_MostSize")} onBlur={(e)=> setLimit(e.target.value)}></input>
-                            </a>
-                        </li>
                     </ul>
                 </div>
                 <div className="BalanceChart me-4">
