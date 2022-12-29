@@ -54,6 +54,7 @@ table td{
   width: 40px;
   height: 40px;
   padding: 8px;
+  position: absolute;
   border-radius: 100%;
   border: none;
   background: #245ad0;

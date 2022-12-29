@@ -5,7 +5,7 @@ import { useState, useEffect } from "react"
 //Font awesome classicon
 import { library } from "@fortawesome/fontawesome-svg-core"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons"
+import { faArrowUp, faArrowDown, faFilter } from "@fortawesome/free-solid-svg-icons"
 
 const SubCategories = ({item}) => {
     //Initial variable
@@ -17,13 +17,14 @@ const SubCategories = ({item}) => {
     const data = Object.values(items);
 
     useEffect(() => {
-        fetch("https://customanalytic.leonardhors.site/api/subcategory/"+sessionStorage.getItem("TableSorting_Subcategory"))
+        fetch("https://customanalytic.leonardhors.site/api/subcategory/"+sessionStorage.getItem("TableSorting_Subcategory")+"/filter/"+sessionStorage.getItem("TableFilter_Subcategory"))
         .then(res => res.json())
             .then(
             (result) => {
                 //Default config
-                if(sessionStorage.getItem("TableSorting_Subcategory") == null){
+                if(sessionStorage.getItem("TableSorting_Subcategory") == null || sessionStorage.getItem("TableFilter_Subcategory") == null){
                     sessionStorage.setItem("TableSorting_Subcategory", "ASC");
+                    sessionStorage.setItem("TableFilter_Subcategory", "All");
                 }
 
                 setIsLoaded(true);
@@ -47,6 +48,14 @@ const SubCategories = ({item}) => {
             return faArrowUp;
         } else {
             return faArrowDown;
+        }
+    }
+
+    function getFilterIcon(){
+        if(sessionStorage.getItem("TableFilter_Subcategory") == "All"){
+            return null;
+        } else {
+            return <FontAwesomeIcon icon={faFilter} style={{fontSize:"14px !important"}}/>;
         }
     }
 
@@ -74,7 +83,7 @@ const SubCategories = ({item}) => {
                         <tr>
                             <th scope="col">ID <FontAwesomeIcon icon={getSortingIcon(sessionStorage.getItem("TableSorting_Subcategory"))} style={{fontSize:"14px !important"}}/></th>
                             <th scope="col">Product SubCategory</th>
-                            <th scope="col">Product Category</th>
+                            <th scope="col">Product Category {getFilterIcon()}</th>
                         </tr>
                     </thead>
                     <tbody>
