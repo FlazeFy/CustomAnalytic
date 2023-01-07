@@ -16,17 +16,17 @@ const SubCategories = ({item}) => {
     //Converter
     const data = Object.values(items);
 
+    
     useEffect(() => {
+        if(sessionStorage.getItem("TableSorting_Subcategory") == null || sessionStorage.getItem("TableFilter_Subcategory") == null){
+            sessionStorage.setItem("TableSorting_Subcategory", "ASC");
+            sessionStorage.setItem("TableFilter_Subcategory", "All");
+        }
         fetch("https://customanalytic.leonardhors.site/api/subcategory/"+sessionStorage.getItem("TableSorting_Subcategory")+"/filter/"+sessionStorage.getItem("TableFilter_Subcategory"))
         .then(res => res.json())
             .then(
             (result) => {
                 //Default config
-                if(sessionStorage.getItem("TableSorting_Subcategory") == null || sessionStorage.getItem("TableFilter_Subcategory") == null){
-                    sessionStorage.setItem("TableSorting_Subcategory", "ASC");
-                    sessionStorage.setItem("TableFilter_Subcategory", "All");
-                }
-
                 setIsLoaded(true);
                 setItems(result.data);
             },
