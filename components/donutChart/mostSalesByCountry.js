@@ -81,6 +81,7 @@ export default function MostSalesByCountry() {
                             options={chart.options}
                             series={chart.series}
                             type="donut"
+                            height="250"
                         />
                     </div>
                 </div>

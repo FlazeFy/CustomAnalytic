@@ -5,6 +5,7 @@ import MostColor from '../../components/donutChart/mostColor'
 import MostSize from '../../components/donutChart/mostSize'
 import MostStyle from '../../components/donutChart/mostStyle'
 import AllSalesByCountry from '../../components/countryMap/allSalesByCountry'
+import MostSizeBar from '../../components/barChart/mostSize'
 
 export default function Products() {
   return (
@@ -23,15 +24,14 @@ export default function Products() {
                   <div className={styles.container} style={{width:"100%", height:"50vh"}}>
                     <MostColor/>
                   </div>
-                </div>
-                <div className='col-lg-6 col-md-6 col-sm-12'>
                   <div className={styles.container} style={{width:"100%", height:"50vh"}}>
-                    <MostSize/>
+                    <MostStyle/>
                   </div>
                 </div>
                 <div className='col-lg-6 col-md-6 col-sm-12'>
-                  <div className={styles.container} style={{width:"100%", height:"50vh"}}>
-                    <MostStyle/>
+                  <div className={styles.container} style={{width:"100%", height:"100vh"}}>
+                    {/* <MostSize/> */}
+                    <MostSizeBar/>
                   </div>
                 </div>
                 <div className='col-lg-12 col-md-12 col-sm-12'>

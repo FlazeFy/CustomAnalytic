@@ -147,6 +147,7 @@ export default function MostSize() {
                         options={chart.options}
                         series={chart.series}
                         type="donut"
+                        height="300"
                     />
                 </div>
             </div>

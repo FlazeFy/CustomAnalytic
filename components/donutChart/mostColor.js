@@ -111,6 +111,7 @@ export default function MostColor() {
                         options={chart.options}
                         series={chart.series}
                         type="donut"
+                        height="300"
                     />
                 </div>
             </div>

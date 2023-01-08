@@ -78,6 +78,7 @@ export default function MostExpensive() {
                             options={chart.options}
                             series={chart.series}
                             type="donut"
+                            height="300"
                         />
                     </div>
                 </div>
